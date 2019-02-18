@@ -105,7 +105,7 @@ class App extends Component {
     });
   }
   handleSubmit = () => {
-    var log ={ 
+    var log = { 
       first_name:this.state.first_name,
       last_name:this.state.last_name,
       mobile:this.state.mobile,
@@ -134,9 +134,7 @@ class App extends Component {
         })
     })
   };
-
-  filered = () => {
-    return new Promise(resolve => {
+componentWillMount(){
       axios
         .get("http://18.233.115.218:8100/api/leads/?location_string=India ")
         .then(resp => {
@@ -170,9 +168,8 @@ class App extends Component {
               content: resp.message,
             });
           }
-        })
-    })
-  };
+        });
+}
 
   update = (id) => {
     return new Promise(resolve => {
@@ -310,7 +307,7 @@ class App extends Component {
                 <Button
                   type="primary"
                   className="login-form-button"
-                  onClick={() => {this.filered(); this.setState({showTable : true, showForm: false})}}
+                  onClick={() => { this.setState({showTable : true, showForm: false})}}
                   >
                   List by location
                     </Button>
